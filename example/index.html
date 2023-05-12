@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../src/style.css" />
+        <script src="Survey.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="survey"></div>
+        <script>
+            const questionsJs = [
+                {
+                    text: "What is your favorite color?",
+                    type: "radio",
+                    answers: ["Red", "Blue", "Green", "Yellow"],
+                },
+                {
+                    text: "What is your favorite animal?",
+                    type: "checkbox",
+                    answers: ["Dog", "Cat", "Bird", "Fish"],
+                },
+                {
+                    text: "What is your favorite animal?",
+                    type: "datetime-local",
+                    answers: ["Fish"],
+                },
+                {
+                    text: "What is your favorite animal?",
+                    type: "select",
+                    answers: ["Dog", "Cat", "Bird", "Fish"],
+                },
+                {
+                    text: "What is your favorite animal?",
+                    type: "textarea",
+                    answers: ["Dog", "Cat", "Bird", "Fish"],
+                },
+                {
+                    text: "What is your favorite animal?",
+                    type: "email",
+                    answers: ["Dog", "Cat", "Bird", "Fish"],
+                },
+                {
+                    text: "What is your favorite animal?",
+                    type: "date",
+                    answers: ["Dog", "Cat", "Bird", "Fish"],
+                },
+            ];
+
+            const survey = new SurveyJs("survey", questionsJs, "https://webhook.site/#!/534462ad-9e88-44b7-af48-d21c553d091c");
+        </script>
+    </body>
+</html>

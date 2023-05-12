@@ -1,0 +1,113 @@
+/* Global styles */
+
+/* Box sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form container */
+.form-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #ccc;
+}
+
+/* Title */
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #444;
+}
+
+/* Question container */
+.question-container {
+    margin-bottom: 1rem;
+}
+
+/* Question title */
+.question-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+/* Input container */
+.input-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Label for radio and checkbox */
+.input-label {
+    font-size: 1rem;
+    margin-right: 1rem;
+    color: #666;
+}
+
+/* Radio and checkbox input */
+.input-field {
+    margin-right: 1rem;
+    width: auto;
+    height: auto;
+}
+
+/* Text input */
+.input-field[type="text"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Textarea input */
+.input-field[type="textarea"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    resize: vertical;
+}
+
+/* Button */
+.btn {
+    padding: 0.5rem 1rem;
+    background-color: #2e86de;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Button hover */
+.btn:hover {
+    background-color: #4b9ff9;
+}
+
+/* Submit button */
+.submit-btn {
+    margin-right: 1rem;
+}
+
+/* Clear button */
+.clear-btn {
+    margin-left: auto;
+}
+
+/* Error message */
+.error-msg {
+    font-size: 0.8rem;
+    color: #ff6b6b;
+    margin-top: 0.5rem;
+}
