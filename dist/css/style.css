@@ -1,0 +1,10 @@
+.surveyForm label.question-title {
+  display: block;
+  margin-bottom: 10px;
+}
+.surveyForm .form-check-label {
+  margin-inline: 5px 20px;
+}
+.surveyForm fieldset {
+  margin-top: 20px;
+}
