@@ -78,20 +78,22 @@ class Survey {
             case "email":
             case "tel":
             case "number":
+            case "range":
             case "date":
             case "time":
+            case "color":
             case "datetime-local":
                 const input = this.createInputElement(question, `question-${index}`);
                 fieldset.appendChild(input);
                 break;
             case "radio":
             case "checkbox":
-                question.answers?.forEach((option) => {
+                question.options?.forEach((option) => {
                     const input = this.createInputElement(question, `question-${index}`);
-                    input.value = option;
+                    input.value = typeof option === 'string' ? option : option.value ?? option.label;
                     fieldset.appendChild(input);
                     const optionLabel = document.createElement("label");
-                    optionLabel.textContent = option;
+                    optionLabel.textContent = typeof option === 'string' ? option : option.label;
                     optionLabel.classList.add("form-check-label");
                     fieldset.appendChild(optionLabel);
                 });
@@ -104,6 +106,18 @@ class Survey {
                 const textarea = this.createTextAreaElement(question, `question-${index}`);
                 fieldset.appendChild(textarea);
                 break;
+            case "image":
+                const image = this.createImageUploadInput(question, `question-${index}`);
+                fieldset.appendChild(image);
+                break;
+            case "toggle":
+                const toggle = this.createBootstrapToggleInput(question, `question-${index}`);
+                fieldset.appendChild(toggle);
+                break;
+            case "rating":
+                const rating = this.createRatingInput(question, `question-${index}`);
+                fieldset.appendChild(rating);
+                break;
         }
         return fieldset;
     }
@@ -111,7 +125,7 @@ class Survey {
         const input = document.createElement("input");
         input.type = question.type;
         input.name = name;
-        input.classList.add(question.type === "checkbox" || question.type === "radio" ? "form-check-input" : "form-control");
+        input.classList.add(question.type === "checkbox" || question.type === "radio" || question.type === "color" ? "form-check-input" : "form-control");
         if (question.required) {
             input.required = true;
         }
@@ -121,7 +135,7 @@ class Survey {
         if (question.placeholder) {
             input.placeholder = question.placeholder;
         }
-        if (question.type === "number") {
+        if (question.type === "number" || question.type === "range") {
             if (question.minValue) {
                 input.min = question.minValue.toString();
             }
@@ -146,8 +160,8 @@ class Survey {
         }
         question.options?.forEach((option) => {
             const optionElement = document.createElement("option");
-            optionElement.value = option.value;
-            optionElement.textContent = option.label;
+            optionElement.value = typeof option === 'string' ? option : option.value ?? option.label;
+            optionElement.textContent = typeof option === 'string' ? option : option.label;
             select.appendChild(optionElement);
         });
         return select;
@@ -166,6 +180,67 @@ class Survey {
             textarea.placeholder = question.placeholder;
         }
         return textarea;
+    }
+    createBootstrapToggleInput(question, name) {
+        const div = document.createElement("div");
+        div.classList.add("form-check", "form-switch");
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.name = name;
+        input.classList.add("form-check-input");
+        if (question.required) {
+            input.required = true;
+        }
+        const label = document.createElement("label");
+        label.classList.add("form-check-label");
+        label.appendChild(input);
+        div.appendChild(label);
+        return div;
+    }
+    createImageUploadInput(question, name) {
+        const container = document.createElement("div");
+        container.classList.add("image-upload-container");
+        const input = document.createElement("input");
+        input.type = "file";
+        input.name = name;
+        input.accept = "image/*";
+        input.classList.add("image-upload-input");
+        if (question.required) {
+            input.required = true;
+        }
+        const label = document.createElement("label");
+        label.classList.add("image-upload-label");
+        const dropZone = document.createElement("div");
+        dropZone.classList.add("image-upload-dropzone");
+        const text = document.createElement("span");
+        text.textContent = "Click to browse";
+        text.classList.add("image-upload-text");
+        dropZone.appendChild(text);
+        label.appendChild(dropZone);
+        label.appendChild(input);
+        container.appendChild(label);
+        input.addEventListener("change", this.handleImageUpload);
+        return container;
+    }
+    createRatingInput(question, name) {
+        const container = document.createElement("div");
+        container.classList.add("rating-input");
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "hidden";
+        hiddenInput.name = name;
+        container.appendChild(hiddenInput);
+        for (let i = 1; i <= 5; i++) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.classList.add("btn", "btn-outline-secondary", "btn-sm");
+            button.textContent = i.toString();
+            container.appendChild(button);
+            button.addEventListener("click", () => {
+                hiddenInput.value = i.toString();
+                this.updateButtonStyles(container, i);
+            });
+        }
+        return container;
     }
     getAnswers() {
         const form = this.container?.querySelector("form");
@@ -187,5 +262,35 @@ class Survey {
         link.rel = "stylesheet";
         link.href = `../dist/css/${style}.css`;
         head.appendChild(link);
+    }
+    handleImageUpload(event) {
+        const target = event.target;
+        const files = target.files;
+        const imageUploadInput = document.querySelector(".image-upload-container");
+        if (files?.length === 0 || !imageUploadInput) {
+            event.preventDefault();
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const imagePreview = document.createElement("img");
+            imagePreview.src = e.target?.result;
+            imageUploadInput.appendChild(imagePreview);
+        };
+        if (files !== null)
+            reader.readAsDataURL(files[0]);
+    }
+    updateButtonStyles(container, rating) {
+        const buttons = container.querySelectorAll("button");
+        buttons.forEach((button, index) => {
+            if (index < rating) {
+                button.classList.remove("btn-outline-secondary");
+                button.classList.add("btn-primary");
+            }
+            else {
+                button.classList.remove("btn-primary");
+                button.classList.add("btn-outline-secondary");
+            }
+        });
     }
 }

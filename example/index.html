@@ -21,49 +21,103 @@
         <script>
             const questions = [
                 {
-                    text: "What is your favorite color?",
-                    type: "radio",
-                    answers: ["Red", "Blue", "Green", "Yellow"],
-                },
-                {
-                    text: "What is your favorite animal?",
-                    type: "checkbox",
-                    answers: ["Dog", "Cat", "Bird", "Fish"],
-                },
-                {
-                    text: "What is your favorite animal?",
-                    type: "datetime-local",
-                    answers: ["Fish"],
-                },
-                {
-                    text: "What is your favorite animal?",
-                    type: "select",
-                    options: [
-                        { label: "Dog", value: 1 },
-                        { label: "Cat", value: 2 },
-                    ],
-                },
-                {
-                    text: "What is your favorite animal?",
-                    type: "textarea",
-                    answers: ["Dog", "Cat", "Bird", "Fish"],
-                },
-                {
-                    text: "What is your favorite animal?",
-                    type: "number",
-                    answers: ["Dog", "Cat", "Bird", "Fish"],
+                    text: "What is your name?",
+                    type: "text",
+                    maxCharacters: 100,
                     required: true,
-                    placeholder: "asdasdasd?",
-                    minValue: -10,
-                    maxValue: 10,
-                    step: 2,
+                    placeholder: "Enter your name"
                 },
                 {
-                    text: "What is your favorite animal?",
+                    text: "What is your email address?",
+                    type: "email",
+                    placeholder: "Enter your email"
+                },
+                {
+                    text: "What is your phone number?",
+                    type: "tel",
+                    required: true,
+                    placeholder: "Enter your phone number"
+                },
+                {
+                    text: "How old are you?",
+                    type: "number",
+                    required: true,
+                    minValue: 18,
+                    maxValue: 100,
+                    placeholder: "Enter your age"
+                },
+                {
+                    text: "Select a date:",
                     type: "date",
-                    answers: ["Dog", "Cat", "Bird", "Fish"],
+                    placeholder: "Select a date"
+                },
+                {
+                    text: "Select a time:",
+                    type: "time",
+                    placeholder: "Select a time"
+                },
+                {
+                    text: "Select a color:",
+                    type: "color",
+                    placeholder: "Select a color"
+                },
+                {
+                    text: "Select a date and time:",
+                    type: "datetime-local",
+                    placeholder: "Select date and time"
+                },
+                {
+                    text: "Choose an option:",
+                    type: "radio",
+                    required: true,
+                    options: ["Option 1", "Option 2", "Option 3"]
+                },
+                {
+                    text: "Choose multiple options:",
+                    type: "checkbox",
+                    multiple: true,
+                    options: ["Option 1", "Option 2", "Option 3"]
+
+                },
+                {
+                    text: "Select an option:",
+                    type: "select",
+                    required: true,
+                    options: [
+                    { label: "Option 1", value: "value 1" },
+                    { label: "Option 2", value: "value 2" },
+                    { label: "Option 3", value: "value 3" }
+                    ]
+                },
+                {
+                    text: "Enter a description:",
+                    type: "textarea",
+                    required: true,
+                    placeholder: "Enter your description"
+                },
+                {
+                    text: "Choose a ranged number:",
+                    type: "range",
+                    required: true,
+                    minValue: 1,
+                    maxValue: 5,
+                    step: 1
+                },
+                {
+                    text: "Toggle the switch:",
+                    type: "toggle",
+                    required: true
+                },
+                {
+                    text: "Rate your experience (1-5):",
+                    type: "rating",
+                },
+                {
+                    text: "Upload an image:",
+                    type: "image",
                 },
             ];
+
             const opts = {
                 // webhookUrl: "https://webhook.site/#!/534462ad-9e88-44b7-af48-d21c553d091c",
                 style: "lux",
