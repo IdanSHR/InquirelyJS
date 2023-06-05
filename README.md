@@ -48,7 +48,7 @@ SurveyJS is a powerful front-end library that enables you to create dynamic and 
 5. Instantiate a new Survey object with the questions array and the ID of the survey container element:
 
    ```javascript
-   const survey = new Survey(questions, "survey-container", opts);
+   const survey = new Survey("survey-container", questions, opts);
 
 ## Objects Reference
 
