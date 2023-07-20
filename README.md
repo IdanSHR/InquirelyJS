@@ -4,6 +4,8 @@
  🚀 Create interactive surveys with ease! 📝
 SurveyJS is a powerful front-end library that enables you to create dynamic and interactive surveys effortlessly. With a wide range of question types and flexible customization options, you can gather valuable feedback and insights from your users.
 
+<a href="https://www.buymeacoffee.com/idanshr" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg" alt="buy me a coffee" width="200px"/></a>
+
 ## Features
 
 -   🌈 Beautiful and modern design (Bootstrap 5)
